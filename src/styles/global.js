@@ -10,9 +10,12 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         font-family: "Inter", sans-serif;
         cursor: default;
+        background-color: var(--color-grey-4);
     }
 
     :root{
+
+        --color-white: #fff;
 
         --color-grey-0:#F8F9FA;
         --color-grey-1:#868E96;
