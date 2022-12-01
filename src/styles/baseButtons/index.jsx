@@ -5,7 +5,7 @@ const baseButtons = ({howUse, isReleased, className}) => {
         <>
             {howUse === "entry" && <button /* isReleased={isReleased}  */className={className} type="submit">Entrar</button>}
             {howUse === "goRegister" && <button className={className}>Cadastre-se</button>}
-            {howUse === "newRegister" && <button /* isReleased={isReleased} */ className={className}>Cadastrar</button>}
+            {howUse === "newRegister" && <button type="submit" /* isReleased={isReleased} */ className={className}>Cadastrar</button>}
             {howUse === "return" && <button className={className}>Voltar</button>}
         </>
     )
