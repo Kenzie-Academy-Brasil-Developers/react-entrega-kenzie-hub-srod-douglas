@@ -1,10 +1,12 @@
 import React from "react";
-import StyledButtons from "../../../styles/buttons";
-import StyledTitles from "../../../styles/typographies";
+import formRegisterSchema from "./registerSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import formRegisterSchema from "./registerSchema";
+import StyledButtons from "../../../styles/buttons";
+import StyledTitles from "../../../styles/typographies";
 import { StyledFormRegister, StyledMainRegister } from "./styles";
+import api from "../../../services/api";
+
 
 const FormRegister = () => {
   const {
@@ -16,8 +18,21 @@ const FormRegister = () => {
   });
 
   const onRegisterSubmit = (data) => {
-    /* delete data.passwordConfirm */
+    delete data.passwordConfirm
+    
+    (async () => {
+      try {
+        const response = await api.post("sessions", data);
+
+        window.localStorage.clear();
+        window.localStorage.setItem("@TOKEN:", response.data.token);
+        window.localStorage.setItem("@USERID:", response.data.user.id);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   };
+
 
   return (
     <StyledMainRegister>
