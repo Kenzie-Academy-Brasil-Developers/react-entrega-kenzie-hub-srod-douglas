@@ -3,9 +3,10 @@ import Header from "../../components/Header";
 import FormRegister from "./Form";
 
 const RegisterPage = () => {
+
   return (
     <>
-      <Header />
+      <Header page="register" />
       <FormRegister />
     </>
   );

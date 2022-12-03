@@ -1,20 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StyledButtons from "../../../styles/buttons";
 import StyledTitles from "../../../styles/typographies";
 import StyledFormLogin from "./styles";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../../services/api";
+import { Link, useNavigate } from "react-router-dom";
+import Input from "../../../components/Input";
+import { formLoginSchema } from "./formLoginSchema";
+import { toast } from "react-toastify";
+
 
 const FormLogin = () => {
-  /*   const [loading, setLoading] = useState(false) */
+  const navigate = useNavigate()
+    const [loading, setLoading] = useState(false)
+
   const [user, setUser] = useState({});
 
-  const formLoginSchema = yup.object().shape({
-    email: yup.string().required("Email obrigatório").email("Email inválido"),
-    password: yup.string().required("Senha obrigatória"),
-  });
+  useEffect(() => {
+
+  }, [user])
 
   const {
     register,
@@ -27,27 +33,33 @@ const FormLogin = () => {
   const onSubmitForm = (data) => {
     (async () => {
       try {
+
+        setLoading(true)
+        toast.success("Login efetuado com sucesso!")
         const response = await api.post("sessions", data);
 
         setUser(response.data.user);
         window.localStorage.clear();
         window.localStorage.setItem("@TOKEN:", response.data.token);
         window.localStorage.setItem("@USERID:", response.data.user.id);
+        navigate(`/dashboard/${response.data.user.id}`)
       } catch (error) {
+        toast.error("Hmm... Algo deu errado. Tente novamente!")
         console.log(error);
+      } finally {
+        setLoading(false)
       }
     })();
   };
 
-  /* inserir aqui a lógica para o form */
+  if(loading){
+    return(
+      <h1>
+        Carregando...
+      </h1>
+    )
+  }
 
-  /* fazer requisição post na api para login (rota /sessions)     OK      */
-
-  /* se requisição ok, armazenar o data.user no estado user       OK      */
-  /* armazenar no localStorage:       OK
-        @TOKEN: data.token              OK
-        @USERID: data.user.id           OK
-    */
   /* criar estado de carregamento (loading) */
   /* após isso, redirecionar o usuário para dashboard */
 
@@ -56,30 +68,25 @@ const FormLogin = () => {
       <div>
         <StyledTitles typography="titleOne">Login</StyledTitles>
       </div>
-
-      <label>Email</label>
-
-      <input placeholder="Digite aqui seu email" {...register("email")} />
+      <Input placeholder="Digite aqui seu email" label="Email" id="email" register={register("email")} />
       {errors.email?.message && (
         <p aria-label="erro ao inserir email">{errors.email.message}</p>
       )}
 
-      <label>Senha</label>
-
-      <input placeholder="Digite aqui sua senha" {...register("password")} />
-      {errors.password?.message && (
-        <span aria-label="erro ao inserir senha">
-          {errors.password.message}
-        </span>
+      <Input placeholder="Digite aqui sua senha" label="Senha" id="password" register={register("password")} />
+        {errors.email?.message && (
+        <p aria-label="erro ao inserir email">{errors.email.message}</p>
       )}
 
-      <StyledButtons howUse="entry" />
-
+      <StyledButtons type="submit" howUse="entry" />
+      
       <div>
         <StyledTitles type="submit" typography="headlineBold">
           Ainda não possui uma conta?
         </StyledTitles>
-        <StyledButtons type="submit" howUse="goRegister" />
+        <Link to="/register">
+          <StyledButtons type="button" howUse="goRegister" />
+        </Link>
       </div>
     </StyledFormLogin>
   );

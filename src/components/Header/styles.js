@@ -1,6 +1,8 @@
-import styled from "styled-components";
+/* eslint-disable default-case */
+import styled, { css } from "styled-components";
 
 export const StyledHeader = styled.header`
+
     width: 370px;
     max-width: 100%;
     height: 60px;
@@ -17,5 +19,29 @@ export const StyledHeader = styled.header`
     &>img {
         width: 122px;
     }
+
+
+    ${({page}) => {
+        switch(page){
+            case "register":
+                return css`
+                    a{
+
+                        font-size: 200px;
+                    }
+                `
+            case "dashboard":
+                return css`
+                    a{
+                        font-size: 200px;
+                    }
+                `
+            case "login":
+                return css`
+                    justify-content: center;
+                `
+        }
+    }}
+
 
 `
