@@ -1,53 +1,83 @@
 /* eslint-disable no-unused-expressions */
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header";
-import StyledTitles from "../../styles/typographies";
 import { useParams } from "react-router-dom";
-import api from "../../services/api";
+import { useNavigate } from "react-router-dom";
+
+import { api } from "../../services/api";
+import { Header } from "../../components/Header";
+
+import { StyledTitles } from "../../styles/typographies";
+import { Fade, SectionInfos, SectionUser } from "./styles";
 
 const DashboardPage = () => {
+
   const navigate = useNavigate();
+  const { userId } = useParams();
+
+  if (!userId) {
+
+    navigate("/login");
+
+  }
+
   const [user, setUser] = useState({});
+
   useEffect(() => {
-    if (
-      !window.localStorage.getItem("@TOKEN") ||
-      !window.localStorage.getItem("@USERID")
-    ) {
-      navigate("/");
-    }
+
+    (async () => {
+
+      try {
+
+        const response = await api.get(`users/${userId}`);
+        setUser(response.data);
+
+      } catch (error) {
+
+        console.log(error);
+        navigate("/login");
+
+      }
+
+    })();
+
   }, []);
 
-  const idUser = useParams()(async () => {
-    try {
-      const response = await api.get(`users/${idUser}`);
-      setUser(response.data.user);
-    } catch (error) {
-      console.log(error);
-    } finally {
-    }
-  })();
-  console.log(user);
   return (
-    <>
-      <Header page="dashboard" />
+
+    <Fade>
+
+      <Header page="dashboard" setUser={setUser} />
+
       <main>
-        <section>
-          <StyledTitles typography="titleOne">Olá, {user.name}</StyledTitles>
+
+        <SectionUser>
+
+          <StyledTitles typography="titleOne">
+            Olá, {user.name}
+          </StyledTitles>
+
           <StyledTitles typography="headlineBold">
             {user.course_module}
           </StyledTitles>
-        </section>
-        <section>
+
+        </SectionUser>
+
+        <SectionInfos>
+
           <StyledTitles typography="titleOne">
-            Que pena! Estamos em desenvolvimento :({" "}
+            Que pena! Estamos em desenvolvimento :(
           </StyledTitles>
+
           <StyledTitles typography="headlineBold">
             Nossa aplicação está em desenvolvimento, em breve teremos novidades
           </StyledTitles>
-        </section>
+
+        </SectionInfos>
+
       </main>
-    </>
+
+    </Fade>
+
   );
 };
 export default DashboardPage;
