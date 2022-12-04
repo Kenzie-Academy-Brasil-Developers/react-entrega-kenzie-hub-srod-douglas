@@ -1,7 +1,6 @@
 import React from "react";
 
-
-const baseTitles = ({typography, className, children}) => {
+export const baseTitles = ({typography, className, children}) => {
     return(
         <>
         {typography === "titleOne" && <h1 className={className}>{children}</h1>}
@@ -13,6 +12,4 @@ const baseTitles = ({typography, className, children}) => {
         {typography === "headlineItalic" && <span className={className}>{children}</span>}
         </>
     )
-}   
-
-export default baseTitles
+}
