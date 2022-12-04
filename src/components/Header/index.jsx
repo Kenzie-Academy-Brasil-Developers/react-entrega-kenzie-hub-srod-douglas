@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 
 import logoBrand from "../../assets/images/logoBrand.svg"
-import { Loader } from '../Loader';
 import { StyledHeader } from './styles'
 
 export const Header = ({ page, setUser }) => {
@@ -26,15 +25,6 @@ export const Header = ({ page, setUser }) => {
       
     }, 4000);
   }
-
-/*   if(loading){
-
-    return (
-
-      <Loader/>
-
-    )
-  } */
 
   switch(page){
 

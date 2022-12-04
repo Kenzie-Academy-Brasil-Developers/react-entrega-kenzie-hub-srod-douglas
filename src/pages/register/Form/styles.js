@@ -31,7 +31,9 @@ export const StyledFormRegister = styled.form`
         display: flex;
         flex-direction: column;
         align-items: center;
+
         background-color: var(--color-grey-3);
+
         gap: 22px;
 
         span{
@@ -93,6 +95,7 @@ export const StyledFormRegister = styled.form`
 
         width: 100%;
         margin-bottom: -10px;
+
         font-size: var(--font-size-1);
         font-weight: var(--font-weight-regular);
 
@@ -110,4 +113,15 @@ export const StyledMainRegister = styled.main`
     width: 100%;
     margin: 0 auto;
     padding: 0 0 20px 0;
+
+    @media (max-width: 768px){
+
+        section{
+
+            min-width: 320px;
+            max-width: 100%;
+            padding: 10px;
+            
+        }
+    }
 `

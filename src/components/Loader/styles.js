@@ -14,6 +14,7 @@ export const Container = styled.div`
 `
 
 export const ContainerLoaderDash = styled.div`
+
     width: 100%;
     height: 100%;
 
@@ -24,6 +25,7 @@ export const ContainerLoaderDash = styled.div`
     margin: 0 auto;
 
     @media (max-width: 767px) {
+        
         width: 50%;
         height: 50%;
 

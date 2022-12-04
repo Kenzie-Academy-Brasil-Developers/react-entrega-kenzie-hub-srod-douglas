@@ -5,30 +5,65 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 
 import { api } from "../../../services/api";
-import { formRegisterSchema } from "./registerSchema";
 
 import { Input } from "../../../components/Input";
 import { StyledButtons } from "../../../styles/buttons";
 import { StyledTitles } from "../../../styles/typographies";
 import { StyledFormRegister, StyledMainRegister } from "./styles";
 
+import * as yup from "yup"
+
 export const FormRegister = () => {
 
   const navigate = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const formRegisterSchema = yup.object().shape({
 
-    mode: "onBlur",
-    resolver: yupResolver(formRegisterSchema),
+    name: yup.string()
+    .required("O nome é obrigatório")
+    .matches(/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/, "O nome deve possuir somente letras.")
+    .min(3, "O nome deve possuir pelo menos 3 caracteres.")
+    .max(150, "O nome deve possuir no máximo 150 caracteres."),
 
-  });
+    email: yup.string()
+    .required("Email é obrigatório")
+    .email("O email digitado é inválido."),
+
+    password: yup.string()
+    .required("A senha é obrigatória")
+    .matches(/(?=.*?[a-z])(?=.*?[A-Z])/, "A senha deve possuir pelo menos uma letra.")
+    .matches(/(?=.*?[0-9])/, "A senha deve possuir pelo menos um número.")
+    .matches(/(?=.*?[#?!@$%^&*-])/, "A senha deve possuir pelo menos um caractere especial. Ex:'#, !, @, %...'")
+    .min(8, "A senha deve possuir no mínimo 8 caracteres.")
+    .max(25, "A senha deve possuir no máximo 25 caracteres."),
+
+    passwordConfirm: yup.string().oneOf([yup.ref("password")], "As senhas não conferem"),
+
+    bio: yup.string().required("A bio é obrigatória.")
+    .min(3, "A bio deve possuir pelo menos 3 caracteres.")
+    .max(200, "A bio deve possuir no máximo 200 caracteres."),
+
+    contact: yup.string().required("A informação de contato é obrigatória.")
+    .min(8, "A informação de contato deve possuir pelo menos 8 caracteres.")
+    .max(100, "A informação de contato deve possuir no máximo 100 caracteres."),
+
+    course_module: yup.string().required("Selecione um módulo para cadastrar."),
+
+})
+
+const {
+  register,
+  handleSubmit,
+  formState: { errors },
+} = useForm({
+
+  mode: "onBlur",
+  resolver: yupResolver(formRegisterSchema),
+
+});
 
   const onRegisterSubmit = (data) => {
-console.log(data)
+
     const { name, email, password, bio, contact, course_module } = data;
     const newData = { name, email, password, bio, contact, course_module };
 
@@ -37,7 +72,7 @@ console.log(data)
       try {
 
         const response = await api.post("users", newData);
-        console.log(response.data)
+
         toast.success(
 
           "Cadastro efetuado com sucesso! Aguarde enquanto redirecionamos ao login."
@@ -86,7 +121,8 @@ console.log(data)
             placeholder="Digite aqui seu nome"
             label="Nome"
             id="name"
-            register={register("name")}
+            /* register={...register("name")} */
+            {...register("name")}
           />
           {errors.name?.message && (
             <span aria-label={errors.name.message}>
@@ -99,7 +135,8 @@ console.log(data)
             placeholder="Digite aqui seu email"
             label="Email"
             id="email"
-            register={register("email")}
+            /* register={register("email")} */
+            {...register("email")}
           />
           {errors.email?.message && (
             <span aria-label="erro ao inserir email">
@@ -112,7 +149,8 @@ console.log(data)
             placeholder="Digite aqui sua senha"
             label="Senha"
             id="password"
-            register={register("password")}
+            /* register={register("password")} */
+            {...register("password")}
 
           />
           {errors.password?.message && (
@@ -126,7 +164,8 @@ console.log(data)
             placeholder="Digite novamente sua senha"
             label="Confirmar Senha"
             id="passwordConfirm"
-            register={register("passwordConfirm")}
+            /* register={register("passwordConfirm")} */
+            {...register("passwordConfirm")}
           />
           {errors.passwordConfirm?.message && (
             <span aria-label={errors.passwordConfirm.message}>
@@ -139,7 +178,8 @@ console.log(data)
             placeholder="Fale sobre você"
             label="Bio"
             id="bio"
-            register={register("bio")}
+            /* register={register("bio")} */
+            {...register("bio")}
           />
           {errors.bio?.message && (
             <span aria-label={errors.bio.message}>
@@ -152,7 +192,8 @@ console.log(data)
             placeholder="Opção de contato"
             label="Contato"
             id="contact"
-            register={register("contact")}
+            /* register={register("contact")} */
+            {...register("contact")}
           />
           {errors.contact?.message && (
             <span aria-label={errors.contact.message}>
@@ -161,7 +202,7 @@ console.log(data)
           )}
 
           <label htmlFor="course">Selecionar módulo</label>
-          <select id="course" register={register("course_module")}>
+          <select id="course" name="course_module" {...register("course_module")} /* register={register("course_module")} */>
 
             <option value="">Escolha um módulo</option>
 
@@ -182,11 +223,11 @@ console.log(data)
             </option>
 
           </select>
-          {errors.course_module?.message && (
+{/*           {errors.course_module?.message && (
             <span aria-label={errors.course_module.message}>
               {errors.course_module.message}
             </span>
-          )}
+          )} */}
 
           <StyledButtons howUse="newRegister" />
 

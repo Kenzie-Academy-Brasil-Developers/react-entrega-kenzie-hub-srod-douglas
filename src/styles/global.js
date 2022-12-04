@@ -53,6 +53,5 @@ const GlobalStyle = createGlobalStyle`
         --font-weight-regular: 400;
 
     }
-
 `
 export default GlobalStyle

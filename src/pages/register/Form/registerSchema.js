@@ -1,4 +1,4 @@
-import * as yup from "yup"
+/* import * as yup from "yup"
 
 export const formRegisterSchema = yup.object().shape({
 
@@ -31,4 +31,4 @@ export const formRegisterSchema = yup.object().shape({
     .max(100, "A informação de contato deve possuir no máximo 100 caracteres."),
 
     course_module: yup.string().required("Selecione um módulo para cadastrar."),
-})
+}) */

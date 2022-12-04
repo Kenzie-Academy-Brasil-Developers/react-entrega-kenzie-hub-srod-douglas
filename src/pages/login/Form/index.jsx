@@ -43,10 +43,12 @@ export const FormLogin = () => {
         const response = await api.post("sessions", data);
 
         setLoading(true)
+
         setTimeout(() => {
           toast.success("Login efetuado com sucesso!")
           
         }, 500);
+
         setTimeout(() => {
           
           setUser(response.data.user);
@@ -65,6 +67,7 @@ export const FormLogin = () => {
         console.log(error);
 
       } finally {
+
         setTimeout(() => {
           
           setLoading(false)
@@ -83,7 +86,6 @@ export const FormLogin = () => {
 
     )
   }
-
 
   return (
 
