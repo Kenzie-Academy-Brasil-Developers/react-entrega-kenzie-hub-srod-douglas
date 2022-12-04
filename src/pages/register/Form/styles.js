@@ -83,10 +83,6 @@ export const StyledFormRegister = styled.form`
 
         option {
 
-            width: 100%;
-            height: 100px;
-            padding: 30px;
-
             background-color: var(--color-grey-2);
             color: var(--color-grey-0);
 

@@ -1,18 +1,40 @@
 /* eslint-disable default-case */
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState }from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 import logoBrand from "../../assets/images/logoBrand.svg"
+import { Loader } from '../Loader';
 import { StyledHeader } from './styles'
 
 export const Header = ({ page, setUser }) => {
 
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
+
   const logoutUser = () => {
 
-    window.localStorage.clear()
-    setUser(null)
+    setLoading(true)
+    toast.success("Logout efetuado, estamos redirecionando ao login.")
+    
+    setTimeout(() => {
 
+      window.localStorage.clear()
+      setUser(null)
+      setLoading(false)
+      navigate('/login')
+      
+    }, 4000);
   }
+
+/*   if(loading){
+
+    return (
+
+      <Loader/>
+
+    )
+  } */
 
   switch(page){
 
@@ -42,7 +64,7 @@ export const Header = ({ page, setUser }) => {
 
         <StyledHeader page={page}>
           <img src = {logoBrand} alt="Logo Kenzie Hub" aria-label="Imagem Kenzie Hub"/>
-          <Link onClick={logoutUser} to="/login">Sair</Link>
+          <button onClick={logoutUser} to="/login">Sair</button>
         </StyledHeader>
 
       );

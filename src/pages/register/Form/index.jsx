@@ -28,16 +28,16 @@ export const FormRegister = () => {
   });
 
   const onRegisterSubmit = (data) => {
-
+console.log(data)
     const { name, email, password, bio, contact, course_module } = data;
     const newData = { name, email, password, bio, contact, course_module };
-    console.log(newData)
+
     (async () => {
 
       try {
 
         const response = await api.post("users", newData);
-        console.log(response)
+        console.log(response.data)
         toast.success(
 
           "Cadastro efetuado com sucesso! Aguarde enquanto redirecionamos ao login."
@@ -82,10 +82,11 @@ export const FormRegister = () => {
           </div>
 
           <Input
+            type="text"
             placeholder="Digite aqui seu nome"
             label="Nome"
             id="name"
-            {...register("name")}
+            register={register("name")}
           />
           {errors.name?.message && (
             <span aria-label={errors.name.message}>
@@ -94,6 +95,7 @@ export const FormRegister = () => {
           )}
 
           <Input
+            type="email"
             placeholder="Digite aqui seu email"
             label="Email"
             id="email"
@@ -106,11 +108,12 @@ export const FormRegister = () => {
           )}
 
           <Input
+            type="password"
             placeholder="Digite aqui sua senha"
             label="Senha"
             id="password"
-            {...register("password")}
-            type="password"
+            register={register("password")}
+
           />
           {errors.password?.message && (
             <span aria-label={errors.password.message}>
@@ -119,11 +122,11 @@ export const FormRegister = () => {
           )}
 
           <Input
+            type="password"
             placeholder="Digite novamente sua senha"
             label="Confirmar Senha"
             id="passwordConfirm"
-            type="password"
-            {...register("passwordConfirm")}
+            register={register("passwordConfirm")}
           />
           {errors.passwordConfirm?.message && (
             <span aria-label={errors.passwordConfirm.message}>
@@ -132,10 +135,11 @@ export const FormRegister = () => {
           )}
 
           <Input
+            type="text"
             placeholder="Fale sobre você"
             label="Bio"
             id="bio"
-            {...register("bio")}
+            register={register("bio")}
           />
           {errors.bio?.message && (
             <span aria-label={errors.bio.message}>
@@ -144,10 +148,11 @@ export const FormRegister = () => {
           )}
 
           <Input
+            type="text"
             placeholder="Opção de contato"
             label="Contato"
             id="contact"
-            {...register("contact")}
+            register={register("contact")}
           />
           {errors.contact?.message && (
             <span aria-label={errors.contact.message}>
@@ -156,7 +161,7 @@ export const FormRegister = () => {
           )}
 
           <label htmlFor="course">Selecionar módulo</label>
-          <select id="course" {...register("course_module")}>
+          <select id="course" register={register("course_module")}>
 
             <option value="">Escolha um módulo</option>
 
@@ -177,6 +182,11 @@ export const FormRegister = () => {
             </option>
 
           </select>
+          {errors.course_module?.message && (
+            <span aria-label={errors.course_module.message}>
+              {errors.course_module.message}
+            </span>
+          )}
 
           <StyledButtons howUse="newRegister" />
 
