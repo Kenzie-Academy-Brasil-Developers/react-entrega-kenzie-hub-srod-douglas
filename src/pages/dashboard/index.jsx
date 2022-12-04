@@ -8,6 +8,7 @@ import { Header } from "../../components/Header";
 
 import { StyledTitles } from "../../styles/typographies";
 import { Fade, SectionInfos, SectionUser } from "./styles";
+import { LoaderDash } from "../../components/Loader";
 
 const DashboardPage = () => {
 
@@ -73,6 +74,7 @@ const DashboardPage = () => {
           </StyledTitles>
 
         </SectionInfos>
+        <LoaderDash/>
 
       </main>
 

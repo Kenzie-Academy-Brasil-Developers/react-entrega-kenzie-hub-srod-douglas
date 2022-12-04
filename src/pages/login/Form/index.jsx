@@ -11,6 +11,8 @@ import { StyledFormLogin } from "./styles";
 import { Input } from "../../../components/Input";
 import { formLoginSchema } from "./formLoginSchema";
 import { api } from "../../../services/api";
+import { Loader } from "../../../components/Loader";
+
 
 export const FormLogin = () => {
 
@@ -41,10 +43,14 @@ export const FormLogin = () => {
         const response = await api.post("sessions", data);
 
         setLoading(true)
-        toast.success("Login efetuado com sucesso!")
 
         setTimeout(() => {
+          toast.success("Login efetuado com sucesso!")
+          
+        }, 500);
 
+        setTimeout(() => {
+          
           setUser(response.data.user);
 
           window.localStorage.clear();
@@ -53,16 +59,20 @@ export const FormLogin = () => {
 
           navigate(`/dashboard/${response.data.user.id}`)
 
-        }, 3000);
+        }, 2000);
 
       } catch (error) {
 
-        toast.error("Hmm... Algo deu errado. Tente novamente!")
+        toast.error("Senha ou Email incorreto, tente novamente!")
         console.log(error);
 
       } finally {
 
-        setLoading(false)
+        setTimeout(() => {
+          
+          setLoading(false)
+
+        }, 4000);
 
       }
     })();
@@ -72,11 +82,10 @@ export const FormLogin = () => {
 
     return(
 
-      <h1>Carregando...</h1>
+      <Loader/>
 
     )
   }
-
 
   return (
 

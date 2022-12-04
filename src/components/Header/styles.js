@@ -17,14 +17,19 @@ export const StyledHeader = styled.header`
 
 
     &>img {
+
         width: 122px;
+        
     }
 
 
     ${({page}) => {
+
         switch(page){
+
             case "register":
                 return css`
+
                     a{
                         display:flex;
                         align-items: center;
@@ -43,8 +48,17 @@ export const StyledHeader = styled.header`
                         font-size: var(--font-size-1);
                         font-weight: var(--font-weight-regular);
                     }
+
                     & > a:hover{
+
                         background-color: var(--color-grey-2);
+
+                    }
+
+                    @media (max-width: 767px){
+
+                        padding: 50px 10px;
+
                     }
                 `
             case "dashboard":
@@ -55,7 +69,8 @@ export const StyledHeader = styled.header`
                     display: flex;
                     justify-content: space-around;
 
-                    a{
+                    button{
+
                         display:flex;
                         align-items: center;
                         justify-content: center;
@@ -72,18 +87,23 @@ export const StyledHeader = styled.header`
 
                         font-size: var(--font-size-1);
                         font-weight: var(--font-weight-regular);
+
+                        cursor: pointer;
                     }
-                    & > a:hover{
+
+                    & > button:hover{
+
                         background-color: var(--color-grey-2);
+
                     }
                 `
             case "login":
                 return css`
+
                     justify-content: center;
 
                 `
+            }
         }
-    }}
-
-
+    }
 `
