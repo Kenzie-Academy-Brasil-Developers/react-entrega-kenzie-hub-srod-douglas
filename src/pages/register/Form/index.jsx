@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
+import * as yup from "yup"
 
 import { api } from "../../../services/api";
 
@@ -10,8 +11,6 @@ import { Input } from "../../../components/Input";
 import { StyledButtons } from "../../../styles/buttons";
 import { StyledTitles } from "../../../styles/typographies";
 import { StyledFormRegister, StyledMainRegister } from "./styles";
-
-import * as yup from "yup"
 
 export const FormRegister = () => {
 
@@ -67,10 +66,11 @@ const {
     const { name, email, password, bio, contact, course_module } = data;
     const newData = { name, email, password, bio, contact, course_module };
 
+
     (async () => {
 
       try {
-
+        
         const response = await api.post("users", newData);
 
         toast.success(
@@ -86,7 +86,7 @@ const {
 
       } catch (error) {
 
-        console.log(error)
+        toast.error(error.response.data.message)
 
       }
     })();
@@ -121,8 +121,7 @@ const {
             placeholder="Digite aqui seu nome"
             label="Nome"
             id="name"
-            /* register={...register("name")} */
-            {...register("name")}
+            register={register("name")}
           />
           {errors.name?.message && (
             <span aria-label={errors.name.message}>
@@ -135,8 +134,7 @@ const {
             placeholder="Digite aqui seu email"
             label="Email"
             id="email"
-            /* register={register("email")} */
-            {...register("email")}
+            register={register("email")}
           />
           {errors.email?.message && (
             <span aria-label="erro ao inserir email">
@@ -149,8 +147,7 @@ const {
             placeholder="Digite aqui sua senha"
             label="Senha"
             id="password"
-            /* register={register("password")} */
-            {...register("password")}
+            register={register("password")}
 
           />
           {errors.password?.message && (
@@ -164,7 +161,6 @@ const {
             placeholder="Digite novamente sua senha"
             label="Confirmar Senha"
             id="passwordConfirm"
-            /* register={register("passwordConfirm")} */
             {...register("passwordConfirm")}
           />
           {errors.passwordConfirm?.message && (
@@ -178,8 +174,7 @@ const {
             placeholder="Fale sobre você"
             label="Bio"
             id="bio"
-            /* register={register("bio")} */
-            {...register("bio")}
+            register={register("bio")}
           />
           {errors.bio?.message && (
             <span aria-label={errors.bio.message}>
@@ -192,8 +187,7 @@ const {
             placeholder="Opção de contato"
             label="Contato"
             id="contact"
-            /* register={register("contact")} */
-            {...register("contact")}
+            register={register("contact")}
           />
           {errors.contact?.message && (
             <span aria-label={errors.contact.message}>
@@ -202,7 +196,7 @@ const {
           )}
 
           <label htmlFor="course">Selecionar módulo</label>
-          <select id="course" name="course_module" {...register("course_module")} /* register={register("course_module")} */>
+          <select id="course" name="course_module" {...register("course_module")}>
 
             <option value="">Escolha um módulo</option>
 
@@ -223,11 +217,11 @@ const {
             </option>
 
           </select>
-{/*           {errors.course_module?.message && (
+          {errors.course_module?.message && (
             <span aria-label={errors.course_module.message}>
               {errors.course_module.message}
             </span>
-          )} */}
+          )}
 
           <StyledButtons howUse="newRegister" />
 
