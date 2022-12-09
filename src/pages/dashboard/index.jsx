@@ -1,47 +1,24 @@
 /* eslint-disable no-unused-expressions */
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 
-import { api } from "../../services/api";
 import { Header } from "../../components/Header";
 
 import { StyledTitles } from "../../styles/typographies";
 import { Fade, SectionInfos, SectionUser } from "./styles";
 import { LoaderDash } from "../../components/Loader";
 
+import { UserContext } from "../../contexts/UserContext";
+import { useContext } from "react";
+
 const DashboardPage = () => {
 
-  const navigate = useNavigate();
-  const { userId } = useParams();
+  const { user, setUser, userPersist } = useContext(UserContext);
 
-  if (!userId) {
+  if(!user && !userPersist){
 
-    navigate("/login");
+    return;
 
-  }
-
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-
-    (async () => {
-
-      try {
-
-        const response = await api.get(`users/${userId}`);
-        setUser(response.data);
-
-      } catch (error) {
-
-        console.log(error);
-        navigate("/login");
-
-      }
-
-    })();
-
-  }, []);
+  };
 
   return (
 

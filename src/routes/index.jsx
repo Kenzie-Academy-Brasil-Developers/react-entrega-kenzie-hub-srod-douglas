@@ -3,6 +3,7 @@ import React from "react";
 import RegisterPage from "../pages/register";
 import LoginPage from "../pages/login";
 import DashboardPage from "../pages/dashboard";
+import { UserContext } from "../contexts/UserContext";
 
 export const AllRoutes = () => {
 
@@ -13,11 +14,9 @@ export const AllRoutes = () => {
       <Route path="/login" index element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
 
-      <Route path="/dashboard" >
-
-        <Route path=":userId" element={<DashboardPage />}/>
-
-      </Route>
+      <Route path="/dashboard" element={<DashboardPage />} />
+{/*         <Route path=":userId" element={<DashboardPage />}/>
+      </Route> */}
 
       <Route path="*" element={<LoginPage />} />
     </Routes>

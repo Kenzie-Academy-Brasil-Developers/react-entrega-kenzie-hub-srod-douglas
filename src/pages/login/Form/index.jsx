@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { toast } from "react-toastify";
 
 import { StyledButtons } from "../../../styles/buttons";
 import { StyledTitles } from "../../../styles/typographies";
@@ -10,19 +9,14 @@ import { StyledFormLogin } from "./styles";
 
 import { Input } from "../../../components/Input";
 import { formLoginSchema } from "./formLoginSchema";
-import { api } from "../../../services/api";
 import { Loader } from "../../../components/Loader";
 
+import { UserContext } from "../../../contexts/UserContext";
+import { useContext } from "react";
 
 export const FormLogin = () => {
 
-  const [loading, setLoading] = useState(false)
-  const [user, setUser] = useState({});
-  const navigate = useNavigate()
-
-  useEffect(() => {
-
-  }, [user])
+  const { loading, onSubmitForm} = useContext(UserContext)
 
   const {
     register,
@@ -34,50 +28,7 @@ export const FormLogin = () => {
 
   });
 
-  const onSubmitForm = (data) => {
-
-    (async () => {
-
-      try {
-
-        const response = await api.post("sessions", data);
-
-        setLoading(true)
-
-        setTimeout(() => {
-          toast.success("Login efetuado com sucesso!")
-          
-        }, 500);
-
-        setTimeout(() => {
-          
-          setUser(response.data.user);
-
-          window.localStorage.clear();
-          window.localStorage.setItem("@TOKEN:", response.data.token);
-          window.localStorage.setItem("@USERID:", response.data.user.id);
-
-          navigate(`/dashboard/${response.data.user.id}`)
-
-        }, 2000);
-
-      } catch (error) {
-
-        toast.error("Senha ou Email incorreto, tente novamente!")
-        console.log(error);
-
-      } finally {
-
-        setTimeout(() => {
-          
-          setLoading(false)
-
-        }, 4000);
-
-      }
-    })();
-  };
-
+  
   if(loading){
 
     return(
