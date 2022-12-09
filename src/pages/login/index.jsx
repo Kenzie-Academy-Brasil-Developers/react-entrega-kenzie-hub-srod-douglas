@@ -5,8 +5,6 @@ import { Fade } from "./styles";
 
 const LoginPage = () => {
 
-  window.localStorage.clear()
-
   return (
 
     <Fade>

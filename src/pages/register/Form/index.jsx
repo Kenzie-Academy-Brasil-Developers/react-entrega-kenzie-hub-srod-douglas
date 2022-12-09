@@ -161,7 +161,7 @@ const {
             placeholder="Digite novamente sua senha"
             label="Confirmar Senha"
             id="passwordConfirm"
-            {...register("passwordConfirm")}
+            register={register("passwordConfirm")}
           />
           {errors.passwordConfirm?.message && (
             <span aria-label={errors.passwordConfirm.message}>
