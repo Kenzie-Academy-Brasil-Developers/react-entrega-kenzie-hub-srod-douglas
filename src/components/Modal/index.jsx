@@ -1,34 +1,41 @@
-import { useContext } from 'react';
-import Modal from 'react-modal';
-import { TechContext } from '../../contexts/TechContext';
+import { useContext } from "react";
+import { TechContext } from "../../contexts/TechContext";
+import { StyledTitles } from "../../styles/typographies";
+import { Input } from "../Input";
+import { StyledContainerModal } from "./styles";
+import { RiCloseCircleFill } from 'react-icons/ri'
+import { StyledButtons } from "../../styles/buttons";
+export const ModalRegisterTech = () => {
+  const { isOpen, setIsOpen } = useContext(TechContext);
 
-export const ModalComponent = () => {
 
-    const { openModal, modalIsOpen, afterOpenModal, closeModal, customStyles } = useContext(TechContext)
-
-  return (
-    <div>
-      <button onClick={openModal}>Open Modal</button>
-
-    <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <h2 /* ref={(_subtitle) => (subtitle = _subtitle)} */>Hello</h2>
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
-      </Modal>
-  
-  </div>
+  return(
+    <StyledContainerModal>
+      <div>
+        <div>
+          <StyledTitles typography="titleTwo">Cadastrar Tecnologia</StyledTitles>
+          <RiCloseCircleFill onClick={() => setIsOpen(false)} />
+        </div>
+        <Input
+          label="Nome"
+          placeholder="Insira o nome da tecnologia"
+          type="text"
+          id="inputTech" /* register={...register()} */
+        />
+        <fieldset>
+          <label htmlFor="optionTech">Selecionar Status</label>
+          <select id="optionTech" name="optionTech">
+            <option value="Iniciante">Iniciante</option>
+            <option value="Intermediário">Intermediário</option>
+            <option value="Avançado">Avançado</option>
+          </select>
+        </fieldset>
+        <StyledButtons howUse="newRegisterTech" />
+      </div>
+    </StyledContainerModal>
   );
+};
+
+export const ModalDetailsTech = () => {
+  return <></>;
 };

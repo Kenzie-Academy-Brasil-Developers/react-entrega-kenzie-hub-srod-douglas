@@ -44,6 +44,7 @@ export const SectionInfos = styled.section`
     gap: 20px;
 
     width: 59%;
+    max-height: max-content;
 
 
     margin: 0 auto;
