@@ -11,6 +11,8 @@ export const Container = styled.div`
 
     margin: 0 auto;
     padding: 200px;
+
+
 `
 
 export const ContainerLoaderDash = styled.div`
@@ -23,6 +25,7 @@ export const ContainerLoaderDash = styled.div`
     align-items: center;
 
     margin: 0 auto;
+    margin-top: 100px;
 
     @media (max-width: 767px) {
         

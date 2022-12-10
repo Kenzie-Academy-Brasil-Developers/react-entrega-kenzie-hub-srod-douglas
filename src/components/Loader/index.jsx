@@ -15,7 +15,7 @@ export const Loader = () => {
     return(
 
         <Container>
-            <PropagateLoader size="15" color="#FF577F" loading={true} speedMultiplier={1} cssOverride={override} />
+            <PropagateLoader size="15px" color="#FF577F" loading={true} speedMultiplier={1} cssOverride={override} />
         </Container>
 
     )
@@ -33,7 +33,7 @@ export const LoaderDash = () => {
     return(
 
         <ContainerLoaderDash>
-            <RingLoader size="200" color="#FF577F" loading={true} speedMultiplier={1} cssOverride={override} />
+            <RingLoader size="200px" color="#FF577F" loading={true} speedMultiplier={1} cssOverride={override} />
         </ContainerLoaderDash>
 
     )

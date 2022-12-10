@@ -3,7 +3,6 @@ import React from "react";
 import RegisterPage from "../pages/register";
 import LoginPage from "../pages/login";
 import DashboardPage from "../pages/dashboard";
-import { UserContext } from "../contexts/UserContext";
 
 export const AllRoutes = () => {
 

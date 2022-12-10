@@ -44,9 +44,21 @@ export const SectionInfos = styled.section`
     gap: 20px;
 
     width: 59%;
-    height: 200px;
+
 
     margin: 0 auto;
+
+    div{
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 2rem;
+
+        & svg {
+            color: white;
+        }
+    }
 
     @media(max-width: 767px){
 
