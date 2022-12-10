@@ -10,9 +10,9 @@ export const CardTech = () => {
     return (
         <StyledTechList>
             {user.techs.map((tech) => 
-                <li>
-                    <StyledTitles typography="titleTwo">{tech.title}</StyledTitles>
-                    <StyledTitles typography="headline">{tech.status}</StyledTitles>
+                <li key={tech.id}>
+                    <StyledTitles  typography="titleTwo">{tech.title}</StyledTitles>
+                    <StyledTitles  typography="headline">{tech.status}</StyledTitles>
                 </li>
             )}
         </StyledTechList>

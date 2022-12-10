@@ -11,11 +11,12 @@ import { AiOutlineAppstoreAdd } from 'react-icons/ai'
 import { UserContext } from "../../contexts/UserContext";
 import { useContext } from "react";
 import { CardTech } from "../../components/CardTech";
+import { TechContext } from "../../contexts/TechContext";
 
 const DashboardPage = () => {
 
   const { user, setUser, userPersist } = useContext(UserContext);
-
+  const { openModal } = useContext(TechContext)
   if(!user && !userPersist){
 
     return;
@@ -47,7 +48,7 @@ const DashboardPage = () => {
             <StyledTitles typography="titleOne">
               Tecnologias
             </StyledTitles>
-            <AiOutlineAppstoreAdd size="1.5rem" onClick={() => console.log("tá funcionando")}/>
+            <AiOutlineAppstoreAdd size="1.5rem" onClick={openModal}/>
           </div>
           <CardTech />
 
