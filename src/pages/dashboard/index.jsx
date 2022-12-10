@@ -6,9 +6,11 @@ import { Header } from "../../components/Header";
 import { StyledTitles } from "../../styles/typographies";
 import { Fade, SectionInfos, SectionUser } from "./styles";
 import { LoaderDash } from "../../components/Loader";
+import { AiOutlineAppstoreAdd } from 'react-icons/ai'
 
 import { UserContext } from "../../contexts/UserContext";
 import { useContext } from "react";
+import { CardTech } from "../../components/CardTech";
 
 const DashboardPage = () => {
 
@@ -41,14 +43,17 @@ const DashboardPage = () => {
         </SectionUser>
 
         <SectionInfos>
+          <div>
+            <StyledTitles typography="titleOne">
+              Tecnologias
+            </StyledTitles>
+            <AiOutlineAppstoreAdd size="1.5rem" onClick={() => console.log("tá funcionando")}/>
+          </div>
+          <CardTech />
 
-          <StyledTitles typography="titleOne">
-            Que pena! Estamos em desenvolvimento :(
-          </StyledTitles>
-
-          <StyledTitles typography="headlineBold">
+{/*           <StyledTitles typography="headlineBold">
             Nossa aplicação está em desenvolvimento, em breve teremos novidades
-          </StyledTitles>
+          </StyledTitles> */}
 
         </SectionInfos>
         <LoaderDash/>

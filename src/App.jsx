@@ -1,11 +1,16 @@
+import { TechProvider } from "./contexts/TechContext";
 import { UserProvider } from "./contexts/UserContext";
 import { AllRoutes } from "./routes";
 
 function App() {
   return (
+
     <UserProvider>
-      <AllRoutes/>
+      <TechProvider>
+        <AllRoutes/>
+      </TechProvider>
     </UserProvider>
+    
   );
 }
 
