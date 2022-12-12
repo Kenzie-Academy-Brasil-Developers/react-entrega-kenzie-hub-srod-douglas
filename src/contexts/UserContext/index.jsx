@@ -13,7 +13,7 @@ export const UserProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [userPersist, setUserPersist] = useState(false);
     const token = window.localStorage.getItem("@TOKEN:");
-    
+    const [techsUser, setTechsUser] = useState(null)
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -27,6 +27,7 @@ export const UserProvider = ({ children }) => {
                     })
 
                     setUser(response.data)
+                    setTechsUser(response.data.techs)
                     setUserPersist(true)
                     navigate('/dashboard')
 
@@ -48,33 +49,27 @@ export const UserProvider = ({ children }) => {
         (async () => {
             try {
                 const response = await api.post("sessions", data);
-                setLoading(true)
-
-                setTimeout(() => {
+                    setLoading(true)
                     toast.success("Login efetuado com sucesso!")
-                }, 500);
-    
-                setTimeout(() => {
                     setUser(response.data.user);
+                    setTechsUser(response.data.user.techs)
                     window.localStorage.clear();
                     window.localStorage.setItem("@TOKEN:", response.data.token);
                     window.localStorage.setItem("@USERID:", response.data.user.id);
                     navigate('/dashboard')
-                }, 2000);
+
     
             } catch (error) {
                 toast.error("Senha ou Email incorreto, tente novamente!")
                 console.log(error);
             } finally {
-                setTimeout(() => {
                     setLoading(false)
-                }, 4000);
             };
         })();
     };
 
     return (
-        <UserContext.Provider value={{ user, setUser, loading, setLoading, onSubmitForm, userPersist, token }}>
+        <UserContext.Provider value={{ user, setUser, loading, setLoading, onSubmitForm, userPersist, token, setTechsUser, techsUser }}>
             {children}
         </UserContext.Provider>
     )

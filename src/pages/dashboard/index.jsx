@@ -13,6 +13,7 @@ import { useContext } from "react";
 import { CardTech } from "../../components/CardTech";
 import { TechContext } from "../../contexts/TechContext";
 import { ModalEditTech, ModalRegisterTech } from "../../components/Modal";
+import { Navigate } from "react-router-dom";
 
 const DashboardPage = () => {
 
@@ -20,7 +21,7 @@ const DashboardPage = () => {
   const { isOpen, setIsOpen, idEdit } = useContext(TechContext);
 
   if(!user && !userPersist){
-    return;
+    return <Navigate to='/login'/>
   };
 
     return (

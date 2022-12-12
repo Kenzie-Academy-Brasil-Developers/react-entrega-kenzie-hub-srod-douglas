@@ -8,13 +8,13 @@ import { UserContext } from "../../contexts/UserContext";
 
 export const CardTech = () => {
     
-    const { user, removeTechProfile, setIdEdit } = useContext(TechContext);
-    const { user: userContext } = useContext(UserContext)
+    const { removeTechProfile, setIdEdit } = useContext(TechContext);
+    const { techsUser } = useContext(UserContext)
 
-    if (userContext.techs !== null) {
+    if (techsUser) {
         return (
             <StyledTechList>
-                {user.techs.map((tech) => (
+                {techsUser.map((tech) => (
 
                 <li key={tech.id}>
                     <StyledTitles typography="titleTwo">{tech.title}</StyledTitles>

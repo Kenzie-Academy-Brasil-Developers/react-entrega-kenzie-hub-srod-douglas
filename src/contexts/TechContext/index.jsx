@@ -1,19 +1,22 @@
 import { useEffect } from "react";
+import { useContext } from "react";
 import { createContext, useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "../../services/api";
+import { UserContext } from "../UserContext";
 
 export const TechContext = createContext({})
 
 export const TechProvider = ({ children }) => {
-
     const token = window.localStorage.getItem("@TOKEN:")
+    const { setTechsUser }= useContext(UserContext)
     const [user, setUser] = useState(null)
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenDelete, setIsOpenDelete] = useState(false);
     const [isOpenEdit, setIsOpenEdit] = useState(false);
     const [idDelete, setIdDelete] = useState(null)
     const [idEdit, setIdEdit] = useState(null)
+
 
     const addTechProfile = async (data) => {
         (async() => {
@@ -35,9 +38,6 @@ export const TechProvider = ({ children }) => {
                 if(error.response.status === 401){
                     toast.error("Esta tecnologia já existe no seu perfil!")
                 }
-
-            } finally{
-
             }
         })()
     }
@@ -91,6 +91,8 @@ export const TechProvider = ({ children }) => {
                 }
             })
             setUser(response.data)
+
+            setTechsUser(response.data.techs)
         } catch (error) {
             console.log(error)
         }
