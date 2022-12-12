@@ -17,9 +17,7 @@ export const StyledHeader = styled.header`
 
 
     &>img {
-
         width: 122px;
-        
     }
 
 

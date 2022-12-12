@@ -21,13 +21,10 @@ export const StyledFormRegister = styled.form`
     background-color: var(--color-grey-3);
 
     form, h1, span{
-
         background-color: var(--color-grey-3);
-
     }
 
     div{
-
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -37,14 +34,11 @@ export const StyledFormRegister = styled.form`
         gap: 22px;
 
         span{
-
             color: var(--color-grey-1);
-
         }
     }
 
     span{
-
         display: flex;
         width: 100%;
 
@@ -54,7 +48,6 @@ export const StyledFormRegister = styled.form`
 
         font-size: var(--font-size-2);
         transition: ${keyFadeIn} 2s ease-in;
-
     }
     
     select {
@@ -77,17 +70,13 @@ export const StyledFormRegister = styled.form`
         -webkit-appearance: var(--color-grey-2);
 
         :focus{
-
             border: none;
             outline: none;
-
         }
 
         option {
-
             background-color: var(--color-grey-2);
             color: var(--color-grey-0);
-
         }
     }
 
@@ -115,13 +104,10 @@ export const StyledMainRegister = styled.main`
     padding: 0 0 20px 0;
 
     @media (max-width: 768px){
-
         section{
-
             min-width: 320px;
             max-width: 100%;
             padding: 10px;
-            
         }
-    }
+    };
 `

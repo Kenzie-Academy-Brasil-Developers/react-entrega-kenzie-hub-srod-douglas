@@ -11,27 +11,17 @@ export const Container = styled.div`
 
     margin: 0 auto;
     padding: 200px;
-
-
 `
 
 export const ContainerLoaderDash = styled.div`
 
     width: 100%;
     height: 100%;
-
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    margin: 0 auto;
-    margin-top: 100px;
 
-    @media (max-width: 767px) {
-        
-        width: 50%;
-        height: 50%;
-
-        margin-top: 10%;
-    }
+    margin-top: 0;
 `

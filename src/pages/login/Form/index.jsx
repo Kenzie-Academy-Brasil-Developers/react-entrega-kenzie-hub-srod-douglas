@@ -23,29 +23,21 @@ export const FormLogin = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-
     resolver: yupResolver(formLoginSchema),
-
   });
 
-  
   if(loading){
-
     return(
-
       <Loader/>
-
     )
-  }
+  };
 
   return (
 
     <StyledFormLogin onSubmit={handleSubmit(onSubmitForm)} autoComplete="off">
 
       <div>
-
         <StyledTitles typography="titleOne">Login</StyledTitles>
-
       </div>
 
       <Input placeholder="Digite aqui seu email" label="Email" id="email" register={register("email")} />
@@ -63,7 +55,7 @@ export const FormLogin = () => {
       )}
 
       <StyledButtons type="submit" howUse="entry" />
-      
+
       <div>
 
         <StyledTitles type="submit" typography="headlineBold">
@@ -75,8 +67,6 @@ export const FormLogin = () => {
         </Link>
 
       </div>
-
     </StyledFormLogin>
-
   );
 };

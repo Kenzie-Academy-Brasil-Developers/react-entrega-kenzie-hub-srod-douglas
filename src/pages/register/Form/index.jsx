@@ -95,17 +95,14 @@ const {
   return (
 
     <StyledMainRegister>
-
       <section>
-
         <StyledFormRegister
           onSubmit={handleSubmit(onRegisterSubmit)}
           noValidate
           autoComplete="off"
         >
-
+          
           <div>
-
             <StyledTitles typography="titleOne">
               Crie sua conta
             </StyledTitles>
@@ -113,7 +110,6 @@ const {
             <StyledTitles typography="headline">
               Rápido e grátis, vamos nessa
             </StyledTitles>
-
           </div>
 
           <Input
@@ -224,11 +220,8 @@ const {
           )}
 
           <StyledButtons howUse="newRegister" />
-
         </StyledFormRegister>
-
       </section>
-
     </StyledMainRegister>
   );
 };

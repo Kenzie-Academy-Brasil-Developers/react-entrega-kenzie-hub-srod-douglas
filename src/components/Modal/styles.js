@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledContainerModal = styled.div`
     width: 100%;
     height: 100%;
+
     position: fixed;
     top: -2rem;
     left: 0;
@@ -14,19 +15,16 @@ export const StyledContainerModal = styled.div`
 
     z-index: 2;
     
-
-
     div {
         display: flex;
         flex-direction: column;
+
         width: 370px;
         gap: 24px;
-        
         padding: 12px 20px;
         margin: auto;
 
         background-color: var(--color-grey-3);
-
         border-radius: 4px;
 
         & > h2 {
@@ -37,8 +35,10 @@ export const StyledContainerModal = styled.div`
         & > svg {
             width: 25px;
             height: 25px;
+
             color: var(--color-grey-4);
             background-color: var(--color-grey-2);
+
             cursor: pointer;
             transition: .5s;
             opacity: .5;
@@ -49,18 +49,27 @@ export const StyledContainerModal = styled.div`
             }
         }
 
-        & > fieldset, label {
+        & > form{
+            background-color: var(--color-grey-3);
+        }
+
+        & > form > fieldset, label {
             background-color: var(--color-grey-3);
             border: none;
+
             gap: 10px;
         }
 
-        & > fieldset /* > label, select */{
+        & > form > fieldset{
             display: flex;
             flex-direction: column;
 
+            background-color: var(--color-grey-3);
             color: #fff;
+
             width: 100%;
+
+            margin-bottom: 1rem;
 
             & > select {
                 height: 44px;
@@ -70,6 +79,10 @@ export const StyledContainerModal = styled.div`
 
                 color: var(--color-grey-0);
                 background-color: var(--color-grey-2);
+
+                & > option{
+                    background-color: var(--color-grey-3);
+                }
             }
         }
     }

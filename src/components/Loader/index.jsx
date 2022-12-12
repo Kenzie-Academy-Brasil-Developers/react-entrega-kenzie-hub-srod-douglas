@@ -19,7 +19,7 @@ export const Loader = () => {
         </Container>
 
     )
-}
+};
 
 export const LoaderDash = () => {
     const override: CSSProperties = {
@@ -37,4 +37,4 @@ export const LoaderDash = () => {
         </ContainerLoaderDash>
 
     )
-}
+};

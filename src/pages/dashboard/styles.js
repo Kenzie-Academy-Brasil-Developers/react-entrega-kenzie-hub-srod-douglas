@@ -25,14 +25,13 @@ export const SectionUser = styled.section`
     width: 100%;
 
     @media(max-width: 767px){
-
+        
         flex-direction: column;
         align-items: flex-start;
 
         padding: 35px 12px;
-
+        margin: 0 auto;
     }
-
 `
 
 export const SectionInfos = styled.section`
@@ -62,8 +61,9 @@ export const SectionInfos = styled.section`
     }
 
     @media(max-width: 767px){
-
-        display: none;
+        width: 100%;
+        padding: 1rem 2rem;
+        margin: 0 auto;
         
     }
 `
