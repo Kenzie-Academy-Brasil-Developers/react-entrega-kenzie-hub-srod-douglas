@@ -12,33 +12,29 @@ import { UserContext } from "../../contexts/UserContext";
 import { useContext } from "react";
 import { CardTech } from "../../components/CardTech";
 import { TechContext } from "../../contexts/TechContext";
-import { ModalRegisterTech } from "../../components/Modal";
+import { ModalEditTech, ModalRegisterTech } from "../../components/Modal";
 
 const DashboardPage = () => {
 
   const { user, setUser, userPersist } = useContext(UserContext);
-  const { isOpen, setIsOpen } = useContext(TechContext);
+  const { isOpen, setIsOpen, idEdit } = useContext(TechContext);
+
   if(!user && !userPersist){
-
     return;
-
   };
 
     return (
   
       <Fade>
         <Header page="dashboard" setUser={setUser} />
-  
         <main>
-  
           <>
-
             <SectionUser>
-  
+
               <StyledTitles typography="titleOne">
                 Olá, {user.name}
               </StyledTitles>
-  
+
               <StyledTitles typography="headlineBold">
                 {user.course_module}
               </StyledTitles>
@@ -46,8 +42,9 @@ const DashboardPage = () => {
             </SectionUser>
   
             <SectionInfos>
-              {isOpen && <ModalRegisterTech />}
 
+              {isOpen && <ModalRegisterTech />}
+              {idEdit && <ModalEditTech />}
             
               <div>
                 <StyledTitles typography="titleOne">
@@ -55,6 +52,7 @@ const DashboardPage = () => {
                 </StyledTitles>
                 <AiOutlineAppstoreAdd size="1.5rem" onClick={() => setIsOpen(true)}/>
               </div>
+              
               <CardTech />
   
             </SectionInfos>

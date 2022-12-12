@@ -4,13 +4,11 @@ import { AllRoutes } from "./routes";
 
 function App() {
   return (
-
     <UserProvider>
       <TechProvider>
         <AllRoutes/>
       </TechProvider>
     </UserProvider>
-    
   );
 }
 

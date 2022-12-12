@@ -6,12 +6,12 @@ export const StyledFormLogin = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   margin: 0 auto;
   gap: 22px;
   padding: 42px 22px;
 
   height: 600px;
-
   width: 100%;
   max-width:470px;
 
@@ -19,7 +19,6 @@ export const StyledFormLogin = styled.form`
   border-radius: 4px;
 
   background-color: var(--color-grey-3);
-
 
   div:last-child{
 
@@ -36,9 +35,7 @@ export const StyledFormLogin = styled.form`
   }
 
   div, p, h1{
-
     background-color: var(--color-grey-3);
-
   }
 
   a > p{
@@ -56,7 +53,6 @@ export const StyledFormLogin = styled.form`
 
     border: 1px solid var(--color-grey-1);
     border-radius: 4px;
-
   }
 
   p:nth-child(5), p:nth-child(3){
@@ -67,15 +63,12 @@ export const StyledFormLogin = styled.form`
     margin: -10px 0 10px 0;
 
     color: var(--color-negative);
-
     font-size: var(--font-size-2);
 
   }
 
   a > p {
-
     cursor: pointer;
-
   }
 
   a{
@@ -99,9 +92,7 @@ export const StyledFormLogin = styled.form`
     font-weight: var(--font-weight-regular);
 
     &:hover {
-
       background-color: var(--color-grey-4);
-
     }
   }
 `;

@@ -8,19 +8,12 @@ const LoginPage = () => {
   return (
 
     <Fade>
-
       <Header page="login" />
-
       <main>
-
         <section>
-
           <FormLogin />
-
         </section>
-
       </main>
-
     </Fade>
 
   );

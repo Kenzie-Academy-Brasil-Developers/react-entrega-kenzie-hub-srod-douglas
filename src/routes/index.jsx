@@ -7,16 +7,10 @@ import DashboardPage from "../pages/dashboard";
 export const AllRoutes = () => {
 
   return (
-
     <Routes>
-
       <Route path="/login" index element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-
       <Route path="/dashboard" element={<DashboardPage />} />
-{/*         <Route path=":userId" element={<DashboardPage />}/>
-      </Route> */}
-
       <Route path="*" element={<LoginPage />} />
     </Routes>
   );
