@@ -14,7 +14,7 @@ export const TechProvider = ({ children }) => {
     const [isOpenEdit, setIsOpenEdit] = useState(false);
     const [idDelete, setIdDelete] = useState(null)
     const [idEdit, setIdEdit] = useState(null)
-
+    const [techs, setTechs] = useState(null)
     const addTechProfile = async (data) => {
         (async() => {
             try {
@@ -91,6 +91,7 @@ export const TechProvider = ({ children }) => {
                 }
             })
             setUser(response.data)
+            setTechs(response.data.techs)
         } catch (error) {
             console.log(error)
         }
@@ -101,7 +102,7 @@ export const TechProvider = ({ children }) => {
     }, []);
 
     return (
-        <TechContext.Provider value={{user, isOpen, setIsOpen, isOpenDelete, setIsOpenDelete, isOpenEdit, setIsOpenEdit, addTechProfile, removeTechProfile, setIdDelete, idDelete, editTechProfile, setIdEdit, idEdit }} >
+        <TechContext.Provider value={{user, isOpen, setIsOpen, isOpenDelete, setIsOpenDelete, isOpenEdit, setIsOpenEdit, addTechProfile, removeTechProfile, setIdDelete, idDelete, editTechProfile, setIdEdit, idEdit, techs }} >
             {children}
         </TechContext.Provider>
     )

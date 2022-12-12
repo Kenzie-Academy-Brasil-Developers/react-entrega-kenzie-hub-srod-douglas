@@ -27,6 +27,7 @@ export const UserProvider = ({ children }) => {
                     })
 
                     setUser(response.data)
+                    console.log(response.data)
                     setUserPersist(true)
                     navigate('/dashboard')
 
@@ -56,6 +57,7 @@ export const UserProvider = ({ children }) => {
     
                 setTimeout(() => {
                     setUser(response.data.user);
+                    console.log(response.data.user)
                     window.localStorage.clear();
                     window.localStorage.setItem("@TOKEN:", response.data.token);
                     window.localStorage.setItem("@USERID:", response.data.user.id);

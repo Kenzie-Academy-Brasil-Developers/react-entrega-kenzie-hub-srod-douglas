@@ -4,14 +4,12 @@ import { StyledTitles } from "../../styles/typographies";
 import { StyledTechList } from "./styles";
 import { MdDelete } from "react-icons/md";
 import { RiEdit2Fill } from "react-icons/ri";
-import { UserContext } from "../../contexts/UserContext";
 
 export const CardTech = () => {
     
-    const { user, removeTechProfile, setIdEdit } = useContext(TechContext);
-    const { user: userContext } = useContext(UserContext)
+    const { user, removeTechProfile, setIdEdit, techs } = useContext(TechContext);
 
-    if (userContext.techs !== null) {
+    if (techs !== null) {
         return (
             <StyledTechList>
                 {user.techs.map((tech) => (
